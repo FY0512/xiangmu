@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../ajax.js"></script>
+</head>
+
+<body>
+    <div class="box">
+        用户名：<input type="text" name="username" class="yhm">
+        密码：<input type="text" name="password" class="pwd">
+        <button class="btn">注册</button>
+
+    </div>
+
+    <script>
+        let btn = document.querySelector('.btn');
+        let username = document.querySelector('.yhm');
+        let password = document.querySelector('.pwd')
+        
+        btn.onclick = function () {
+            console.log(password.value);
+        console.log(username.value);
+            pAjax({
+                type: 'post',
+                url: './zhuce.php',
+                data: {
+                    username: username.value,
+                    password: password.value
+                }
+            }).then(res => {
+                res = JSON.parse(res);
+                if(res.code){
+                    location.href=`../../登录.html`;
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./ajax.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box1 {
+            width: 1200px;
+            margin: auto;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        #main {
+            width: 100%;
+            height: 600px;
+            background-color: #dd2726;
+        }
+
+        .denglu {
+            width: 1200px;
+            height: 600px;
+            margin: auto;
+            background-color: #de0100;
+        }
+        .denglu img{
+            float: left;
+        }
+        .box{
+            width: 350px;
+            height: 400px;
+            float: right;
+            margin-top: 100px;
+            margin-right: 30px;
+            background-color: white;
+        }
+        .box p{
+            font-size: 20px;
+            margin-top: 35px;
+            margin-left: 26px;
+        }
+        .inp1{
+            margin-top: 28px;
+            margin-left: 26px;
+            width: 300px;
+            height: 40px;
+        }
+        .inp2{
+            margin-top: 10px;
+            margin-left: 26px;
+            width: 300px;
+            height: 40px;
+        }
+        .btn1{
+            width: 300px;
+            height: 40px;
+            background-color: #ff0036;
+            margin-left: 26px;
+            margin-top: 20px;
+            border: none;
+        }
+        .zhuce p{
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+   
+    <div class="box1">
+        <a href="./index.html">
+            <img src="./images/登录注册.png" alt=""></a>
+    </div>
+    <div id="main" class="main">
+        <div class="denglu">
+            <img src="./images/登录.png" alt="">
+            <div class="box">
+                <b><p>登录</p></b>
+                <input type="text" class="inp1" placeholder="请输入账号密码">
+                <input type="password" class="inp2">
+                <button class="btn1">登录</button>
+                <p class="zhuce"><a href="./xiangmu.io/code/zhuce.html">注册</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    let btn = document.querySelector('.btn1');
+        let username = document.querySelector('.inp1');
+        let password = document.querySelector('.inp2');
+        
+        btn.onclick = function () {
+            console.log(username.value);
+            // console.log(password.value);
+        
+            pAjax({
+                type: 'post',
+                url: './xiangmu.io/code/login.php',
+                data: {
+                    username: username.value,
+                    password: password.value
+                }
+            }).then(res => {
+                res = JSON.parse(res);
+                if(res.code==2){
+                    console.log(000);
+                    location.href=`./index.html?${username.value}`;
+                }
+            })
+        }
+</script>
+</html>
